@@ -1,0 +1,50 @@
+name: CI
+
+on:
+  push:
+    branches: [ master, main ]
+  pull_request:
+    branches: [ master, main ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    strategy:
+      matrix:
+        node-version: [18.x, 20.x]
+
+    steps:
+    - uses: actions/checkout@v3
+
+    - name: Use Node.js ${{ matrix.node-version }}
+      uses: actions/setup-node@v3
+      with:
+        node-version: ${{ matrix.node-version }}
+
+    - name: Install dependencies
+      run: npm ci
+
+    - name: Build project
+      run: npm run build
+
+    - name: Check compilation
+      run: |
+        if [ -d "build" ]; then
+          echo "✅ Build successful"
+          ls -la build/
+        else
+          echo "❌ Build failed"
+          exit 1
+        fi
+
+    - name: Run TypeScript check
+      run: npx tsc --noEmit
+
+    - name: Check git status
+      run: |
+        if [ -n "$(git status --porcelain)" ]; then
+          echo "❌ Working directory is not clean"
+          git status
+          exit 1
+        fi
