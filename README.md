@@ -9,11 +9,12 @@
 
 ## 🌟 项目亮点
 
-- **🔍 完整工具链**: nmap + nuclei + dirsearch + sqlmap
+- **🔍 完整工具链**: nmap + nuclei + dirsearch + sqlmap + hydra
 - **🛡️ 企业级安全**: 白名单、黑名单、命令注入防护
+- **📚 Kali 内置字典**: 支持 rockyou, john, fasttrack 等密码字典
 - **📊 结构化输出**: JSON格式，便于分析和报告
 - **⚡ 高性能**: 并发扫描、速率控制、超时保护
-- **🚀 即开即用**: 所有工具已安装、测试、文档完善
+- **🚀 即开即用**: 完整安装指南，开箱即用
 
 ## 🛠️ 核心工具
 
@@ -52,6 +53,14 @@
 - ✅ 数据提取
 - ✅ WAF检测
 - ✅ 多种数据库支持
+
+### 5. hydra - 密码破解专家 ⭐ **NEW!**
+**强大的密码暴力破解工具**
+
+- ✅ 多协议支持 (SSH, FTP, HTTP, MySQL等)
+- ✅ Kali内置字典集成 (rockyou, john, fasttrack等)
+- ✅ 并发破解和速率控制
+- ✅ 会话恢复和暂停功能
 
 ## 📊 工具能力对比
 
@@ -96,27 +105,65 @@
 
 ## 🚀 快速开始
 
-### 安装
+### 系统要求
+- **操作系统**: Linux (推荐 Kali Linux) 或 macOS
+- **Node.js**: v18.0.0 或更高版本
+- **Python**: v3.8+ (部分工具需要)
+- **Kali工具**: nmap, nuclei, dirsearch, sqlmap, hydra
+
+### 1. 克隆项目
 ```bash
-cd /home/ligong/Documents/mcp
+git clone https://github.com/Xc1Ym/kali-tools-mcp.git
+cd kali-tools-mcp
+```
+
+### 2. 安装依赖
+```bash
 npm install
 npm run build
 ```
 
-### 配置
+### 3. 配置允许的目标
 编辑 `config/default.json`：
 ```json
 {
   "allowedTargets": [
-    "192.168.45.139",
-    "scanme.nmap.org"
+    "example.com",
+    "testphp.vulnweb.com",
+    "192.168.1.0/24"
+  ],
+  "blockedTargets": [
+    "localhost",
+    "127.0.0.1"
   ]
 }
 ```
 
-### 使用
-```bash
-npm start
+### 4. 在 Claude Code 中配置 MCP
+编辑 Claude Code 的 MCP 配置文件：
+
+**Linux/macOS**: `~/.config/claude-code/config.json`
+```json
+{
+  "mcpServers": {
+    "kali-tools": {
+      "command": "node",
+      "args": ["/path/to/kali-tools-mcp/build/index.js"],
+      "env": {
+        "NODE_ENV": "production"
+      }
+    }
+  }
+}
+```
+
+### 5. 重启 Claude Code
+重启 Claude Code 以加载 MCP 服务器。
+
+### 6. 验证安装
+在 Claude Code 中运行：
+```
+使用 nmap 扫描 localhost
 ```
 
 ## 💬 在 Claude Code 中使用
@@ -138,13 +185,9 @@ npm start
 
 ## 📚 完整文档
 
-- **[平台总览](ULTIMATE_PLATFORM.md)** - 完整功能介绍
-- **[nmap文档](README.md)** - 网络扫描指南
-- **[nuclei文档](NUCLEI_COMPLETE.md)** - 漏洞扫描指南
-- **[dirsearch文档](DIRSEARCH_COMPLETE.md)** - 目录枚举指南
-- **[sqlmap文档](SQLMAP_COMPLETE.md)** - SQL注入测试指南
-- **[安全警告](SQLMAP_SECURITY.md)** - 重要安全提醒
-- **[项目状态](IMPLEMENTATION_STATUS.md)** - 开发进度
+- **[安装指南](INSTALL.md)** - 详细安装和配置说明
+- **[发布指南](RELEASE.md)** - 如何发布和贡献
+- **[完整文档](README.md)** - 所有功能介绍
 
 ## ⚠️ 重要安全警告
 
@@ -233,6 +276,7 @@ MIT License
 - [Nuclei](https://github.com/projectdiscovery/nuclei)
 - [Dirsearch](https://github.com/maurosoria/dirsearch)
 - [Sqlmap](https://sqlmap.org/)
+- [Hydra](https://github.com/vanhauser-thc/thc-hydra)
 - Kali Linux 社区
 
 ## ⚠️ 免责声明
@@ -243,6 +287,14 @@ MIT License
 
 ---
 
-**版本: 2.0.0 | 工具: 4 | 状态: 生产就绪** 🚀
+**版本: 1.0.0 | 工具: 5 | 状态: 生产就绪** 🚀
 
 *Made with ❤️ for the security community*
+
+## 🔗 相关链接
+
+- 📦 [GitHub Repository](https://github.com/Xc1Ym/kali-tools-mcp)
+- 📖 [安装指南](INSTALL.md)
+- 🚀 [发布指南](RELEASE.md)
+- 🐛 [报告问题](https://github.com/Xc1Ym/kali-tools-mcp/issues)
+- 💬 [讨论区](https://github.com/Xc1Ym/kali-tools-mcp/discussions)
