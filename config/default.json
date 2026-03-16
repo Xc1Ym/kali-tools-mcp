@@ -1,0 +1,26 @@
+{
+  "allowedTargets": [
+    "example.com",
+    "testphp.vulnweb.com",
+    "192.168.0.0/16"
+  ],
+  "blockedTargets": [
+    "localhost",
+    "127.0.0.1",
+    "0.0.0.0",
+    "::1"
+  ],
+  "blockedRanges": [
+    "10.0.0.0/8",
+    "172.16.0.0/12",
+    "169.254.0.0/16"
+  ],
+  "defaultTimeout": 300,
+  "maxConcurrentScans": 3,
+  "logLevel": "info",
+  "requireConfirmationFor": [
+    "aggressive_scan",
+    "brute_force",
+    "exploitation"
+  ]
+}

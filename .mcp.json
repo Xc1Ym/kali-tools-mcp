@@ -1,0 +1,14 @@
+{
+  "mcpServers": {
+    "kali-tools": {
+      "command": "node",
+      "args": [
+        "build/index.js"
+      ],
+      "cwd": "/home/ligong/Documents/mcp",
+      "env": {
+        "NODE_ENV": "production"
+      }
+    }
+  }
+}
