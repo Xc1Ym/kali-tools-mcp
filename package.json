@@ -12,11 +12,19 @@
   },
   "keywords": [
     "mcp",
+    "model-context-protocol",
     "kali",
     "security",
-    "penetration-testing"
+    "penetration-testing",
+    "nmap",
+    "nuclei",
+    "dirsearch",
+    "sqlmap",
+    "hydra",
+    "vulnerability-scanner",
+    "security-tools"
   ],
-  "author": "",
+  "author": "Xc1Ym",
   "license": "MIT",
   "dependencies": {
     "@modelcontextprotocol/sdk": "^1.0.4",
