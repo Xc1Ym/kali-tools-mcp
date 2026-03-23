@@ -15,6 +15,14 @@ export interface SecurityConfig {
     timeout?: number;
     rejectUnauthorized?: boolean;
   };
+  msfrpc?: {
+    host?: string;
+    port?: number;
+    username?: string;
+    password?: string;
+    uri?: string;
+    timeout?: number;
+  };
 }
 
 let config: SecurityConfig | null = null;
@@ -217,4 +225,11 @@ export async function logSecurityEvent(
   } catch (error) {
     console.error('Failed to write security log:', error);
   }
+}
+
+/**
+ * Load security configuration (alias for loadConfig)
+ */
+export async function loadSecurityConfig(configPath: string = 'config/default.json'): Promise<SecurityConfig> {
+  return loadConfig(configPath);
 }

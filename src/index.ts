@@ -15,6 +15,7 @@ import { DirsearchTool } from './tools/dirsearch.js';
 import { SqlmapTool } from './tools/sqlmap.js';
 import { HydraTool } from './tools/hydra.js';
 import { AcunetixTool } from './tools/acunetix.js';
+import { MsfRpcTool } from './tools/msfrpc.js';
 
 /**
  * Kali MCP Server
@@ -129,6 +130,7 @@ async function main() {
   server.registerTool(new SqlmapTool());
   server.registerTool(new HydraTool());
   server.registerTool(new AcunetixTool());
+  server.registerTool(new MsfRpcTool());
 
   await server.start();
 }

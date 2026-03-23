@@ -1,21 +1,22 @@
 # 🎊 Kali Tools MCP Server v2.0 - 终极安全测试平台
 
-> 🛡️ 企业级安全测试平台，集成5个核心Kali工具 + Acunetix，通过MCP协议提供AI辅助渗透测试
+> 🛡️ 企业级安全测试平台，集成5个核心Kali工具 + Acunetix + Metasploit，通过MCP协议提供AI辅助渗透测试
 
 [![Build Status](https://img.shields.io/badge/build-passing-brightgreen)]()
 [![License](https://img.shields.io/badge/license-MIT-blue)]()
 [![Version](https://img.shields.io/badge/version-2.0.0-orange)]()
-[![Tools](https://img.shields.io/badge/tools-6-blue)]())
+[![Tools](https://img.shields.io/badge/tools-7-blue)]())
 
 ## 🌟 项目亮点
 
-- **🔍 完整工具链**: nmap + nuclei + dirsearch + sqlmap + hydra + Acunetix
+- **🔍 完整工具链**: nmap + nuclei + dirsearch + sqlmap + hydra + Acunetix + Metasploit
 - **🛡️ 企业级安全**: 白名单、黑名单、命令注入防护
 - **📚 Kali 内置字典**: 支持 rockyou, john, fasttrack 等密码字典
 - **📊 结构化输出**: JSON格式，便于分析和报告
 - **⚡ 高性能**: 并发扫描、速率控制、超时保护
 - **🚀 即开即用**: 完整安装指南，开箱即用
 - **🌐 Acunetix 集成**: 专业漏洞扫描器 API 集成
+- **💥 Metasploit 集成**: 渗透测试框架完整支持
 
 ## 🛠️ 核心工具
 
@@ -73,23 +74,35 @@
 - ✅ 完整 API 支持 - 覆盖所有 Acunetix API 功能
 - ✅ 企业级集成 - 支持 Acunetix On-Premise 和 Online 版本
 
+### 7. Metasploit Framework - 渗透测试框架 ⭐ **NEW!**
+**完整的渗透测试和漏洞利用框架**
+
+- ✅ 模块管理 - 搜索、加载、执行 exploit/payload/post 模块
+- ✅ 会话管理 - 管理 meterpreter/shell 会话
+- ✅ 主机/服务发现 - workspace、hosts、services、vulns 管理
+- ✅ 凭证管理 - 收集、使用、管理凭证数据
+- ✅ 任务管理 - 启动、停止、监控后台任务
+- ✅ MSGRPC 集成 - 完整的 RPC API 支持
+
 ## 📊 工具能力对比
 
-| 功能 | nmap | nuclei | dirsearch | sqlmap | hydra | Acunetix |
-|------|------|--------|-----------|--------|-------|----------|
-| **网络发现** | ✅ | ❌ | ❌ | ❌ | ❌ | ❌ |
-| **端口扫描** | ✅ | ❌ | ❌ | ❌ | ❌ | ❌ |
-| **服务识别** | ✅ | ✅ | ❌ | ❌ | ❌ | ✅ |
-| **目录枚举** | ❌ | ❌ | ✅ | ❌ | ❌ | ✅ |
-| **文件发现** | ❌ | ✅ | ✅ | ❌ | ❌ | ✅ |
-| **漏洞扫描** | ❌ | ✅ | ❌ | ✅ | ❌ | ✅ |
-| **CVE检测** | ❌ | ✅ | ❌ | ❌ | ❌ | ✅ |
-| **SQL注入** | ❌ | ❌ | ❌ | ✅ | ❌ | ✅ |
-| **数据库枚举** | ❌ | ❌ | ❌ | ✅ | ❌ | ❌ |
-| **OS检测** | ✅ | ❌ | ❌ | ❌ | ❌ | ❌ |
-| **密码破解** | ❌ | ❌ | ❌ | ❌ | ✅ | ❌ |
-| **报告生成** | ❌ | ❌ | ❌ | ❌ | ❌ | ✅ |
-| **目标管理** | ❌ | ❌ | ❌ | ❌ | ❌ | ✅ |
+| 功能 | nmap | nuclei | dirsearch | sqlmap | hydra | Acunetix | Metasploit |
+|------|------|--------|-----------|--------|-------|----------|------------|
+| **网络发现** | ✅ | ❌ | ❌ | ❌ | ❌ | ❌ | ✅ |
+| **端口扫描** | ✅ | ❌ | ❌ | ❌ | ❌ | ❌ | ✅ |
+| **服务识别** | ✅ | ✅ | ❌ | ❌ | ❌ | ✅ | ✅ |
+| **目录枚举** | ❌ | ❌ | ✅ | ❌ | ❌ | ✅ | ✅ |
+| **文件发现** | ❌ | ✅ | ✅ | ❌ | ❌ | ✅ | ✅ |
+| **漏洞扫描** | ❌ | ✅ | ❌ | ✅ | ❌ | ✅ | ✅ |
+| **CVE检测** | ❌ | ✅ | ❌ | ❌ | ❌ | ✅ | ✅ |
+| **SQL注入** | ❌ | ❌ | ❌ | ✅ | ❌ | ✅ | ✅ |
+| **数据库枚举** | ❌ | ❌ | ❌ | ✅ | ❌ | ❌ | ✅ |
+| **OS检测** | ✅ | ❌ | ❌ | ❌ | ❌ | ❌ | ✅ |
+| **密码破解** | ❌ | ❌ | ❌ | ❌ | ✅ | ❌ | ✅ |
+| **漏洞利用** | ❌ | ❌ | ❌ | ❌ | ❌ | ❌ | ✅ |
+| **会话管理** | ❌ | ❌ | ❌ | ❌ | ❌ | ❌ | ✅ |
+| **报告生成** | ❌ | ❌ | ❌ | ❌ | ❌ | ✅ | ❌ |
+| **目标管理** | ❌ | ❌ | ❌ | ❌ | ❌ | ✅ | ✅ |
 
 ## 🎯 完整渗透测试工作流
 
@@ -183,6 +196,39 @@ export ACUNETIX_API_KEY="your_api_key_here"
 - Acunetix Online (online.acunetix.com)
 - Invicti (app.invicti.com)
 
+### 3.2. 配置 Metasploit Framework（可选）
+如果想使用 Metasploit 功能，编辑 `config/default.json` 添加 MSFRPC 配置：
+
+```json
+{
+  "msfrpc": {
+    "host": "localhost",
+    "port": 55553,
+    "username": "msf",
+    "password": "your_msf_password",
+    "uri": "/api/",
+    "timeout": 30000
+  }
+}
+```
+
+**启动 MSFRPC 服务**:
+```bash
+# 在 Kali Linux 上启动 msfrpcd
+msfrpcd -P your_password -U msf
+
+# 或者使用 msfconsole
+msfconsole
+msf6> load msgrpc ServerHost=127.0.0.1 ServerPort=55553 User=msf Pass=your_password
+```
+
+**MSF 功能特性**:
+- 模块搜索和执行
+- 会话管理和交互
+- 工作区和主机管理
+- 凭证收集和利用
+- 后台任务管理
+
 ### 4. 在 Claude Code 中配置 MCP
 编辑 Claude Code 的 MCP 配置文件：
 
@@ -227,6 +273,13 @@ export ACUNETIX_API_KEY="your_api_key_here"
 使用 Acunetix 创建目标并启动扫描
 使用 Acunetix 查看扫描结果和漏洞列表
 使用 Acunetix 生成漏洞报告
+```
+
+### 使用 Metasploit 进行渗透测试
+```
+使用 MSF 搜索 exploit 模块
+使用 MSF 执行 auxiliary 扫描
+使用 MSF 管理会话和主机
 ```
 
 ### 综合安全评估（结合所有工具）

@@ -28,5 +28,13 @@
     "apiKey": "",
     "timeout": 30000,
     "rejectUnauthorized": false
+  },
+  "msfrpc": {
+    "host": "localhost",
+    "port": 55553,
+    "username": "msf",
+    "password": "",
+    "uri": "/api/",
+    "timeout": 30000
   }
 }
