@@ -24,9 +24,10 @@
     "exploitation"
   ],
   "acunetix": {
-    "apiBaseUrl": "https://127.0.0.1:3443/api/v1",
-    "apiKey": "",
+    "apiBaseUrl": "https://192.168.46.128:3443/api/v1",
+    "apiKey": "your_api_key_here",
     "timeout": 30000,
-    "rejectUnauthorized": false
+    "rejectUnauthorized": false,
+    "comment": "Get your API key from Acunetix UI: Profile > API Key"
   }
 }

@@ -9,6 +9,12 @@ export interface SecurityConfig {
   maxConcurrentScans: number;
   logLevel: string;
   requireConfirmationFor: string[];
+  acunetix?: {
+    apiBaseUrl?: string;
+    apiKey?: string;
+    timeout?: number;
+    rejectUnauthorized?: boolean;
+  };
 }
 
 let config: SecurityConfig | null = null;

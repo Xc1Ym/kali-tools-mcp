@@ -1,20 +1,21 @@
 # 🎊 Kali Tools MCP Server v2.0 - 终极安全测试平台
 
-> 🛡️ 企业级安全测试平台，集成4个核心Kali工具，通过MCP协议提供AI辅助渗透测试
+> 🛡️ 企业级安全测试平台，集成5个核心Kali工具 + Acunetix，通过MCP协议提供AI辅助渗透测试
 
 [![Build Status](https://img.shields.io/badge/build-passing-brightgreen)]()
 [![License](https://img.shields.io/badge/license-MIT-blue)]()
 [![Version](https://img.shields.io/badge/version-2.0.0-orange)]()
-[![Tools](https://img.shields.io/badge/tools-4-blue)]())
+[![Tools](https://img.shields.io/badge/tools-6-blue)]())
 
 ## 🌟 项目亮点
 
-- **🔍 完整工具链**: nmap + nuclei + dirsearch + sqlmap + hydra
+- **🔍 完整工具链**: nmap + nuclei + dirsearch + sqlmap + hydra + Acunetix
 - **🛡️ 企业级安全**: 白名单、黑名单、命令注入防护
 - **📚 Kali 内置字典**: 支持 rockyou, john, fasttrack 等密码字典
 - **📊 结构化输出**: JSON格式，便于分析和报告
 - **⚡ 高性能**: 并发扫描、速率控制、超时保护
 - **🚀 即开即用**: 完整安装指南，开箱即用
+- **🌐 Acunetix 集成**: 专业漏洞扫描器 API 集成
 
 ## 🛠️ 核心工具
 
@@ -54,7 +55,7 @@
 - ✅ WAF检测
 - ✅ 多种数据库支持
 
-### 5. hydra - 密码破解专家 ⭐ **NEW!**
+### 5. hydra - 密码破解专家
 **强大的密码暴力破解工具**
 
 - ✅ 多协议支持 (SSH, FTP, HTTP, MySQL等)
@@ -62,20 +63,33 @@
 - ✅ 并发破解和速率控制
 - ✅ 会话恢复和暂停功能
 
+### 6. Acunetix - 专业漏洞扫描器 ⭐ **NEW!**
+**企业级 Web 应用漏洞扫描器 API 集成**
+
+- ✅ 目标管理 - 创建、管理和配置扫描目标
+- ✅ 扫描管理 - 启动、停止、监控扫描任务
+- ✅ 漏洞管理 - 查询、分类、更新漏洞状态
+- ✅ 报告生成 - 生成 PDF、HTML、JSON 等多种格式报告
+- ✅ 完整 API 支持 - 覆盖所有 Acunetix API 功能
+- ✅ 企业级集成 - 支持 Acunetix On-Premise 和 Online 版本
+
 ## 📊 工具能力对比
 
-| 功能 | nmap | nuclei | dirsearch | sqlmap |
-|------|------|--------|-----------|--------|
-| **网络发现** | ✅ | ❌ | ❌ | ❌ |
-| **端口扫描** | ✅ | ❌ | ❌ | ❌ |
-| **服务识别** | ✅ | ✅ | ❌ | ❌ |
-| **目录枚举** | ❌ | ❌ | ✅ | ❌ |
-| **文件发现** | ❌ | ✅ | ✅ | ❌ |
-| **漏洞扫描** | ❌ | ✅ | ❌ | ✅ |
-| **CVE检测** | ❌ | ✅ | ❌ | ❌ |
-| **SQL注入** | ❌ | ❌ | ❌ | ✅ |
-| **数据库枚举** | ❌ | ❌ | ❌ | ✅ |
-| **OS检测** | ✅ | ❌ | ❌ | ❌ |
+| 功能 | nmap | nuclei | dirsearch | sqlmap | hydra | Acunetix |
+|------|------|--------|-----------|--------|-------|----------|
+| **网络发现** | ✅ | ❌ | ❌ | ❌ | ❌ | ❌ |
+| **端口扫描** | ✅ | ❌ | ❌ | ❌ | ❌ | ❌ |
+| **服务识别** | ✅ | ✅ | ❌ | ❌ | ❌ | ✅ |
+| **目录枚举** | ❌ | ❌ | ✅ | ❌ | ❌ | ✅ |
+| **文件发现** | ❌ | ✅ | ✅ | ❌ | ❌ | ✅ |
+| **漏洞扫描** | ❌ | ✅ | ❌ | ✅ | ❌ | ✅ |
+| **CVE检测** | ❌ | ✅ | ❌ | ❌ | ❌ | ✅ |
+| **SQL注入** | ❌ | ❌ | ❌ | ✅ | ❌ | ✅ |
+| **数据库枚举** | ❌ | ❌ | ❌ | ✅ | ❌ | ❌ |
+| **OS检测** | ✅ | ❌ | ❌ | ❌ | ❌ | ❌ |
+| **密码破解** | ❌ | ❌ | ❌ | ❌ | ✅ | ❌ |
+| **报告生成** | ❌ | ❌ | ❌ | ❌ | ❌ | ✅ |
+| **目标管理** | ❌ | ❌ | ❌ | ❌ | ❌ | ✅ |
 
 ## 🎯 完整渗透测试工作流
 
@@ -139,6 +153,36 @@ npm run build
 }
 ```
 
+### 3.1. 配置 Acunetix（可选）
+如果你想使用 Acunetix 功能，编辑 `config/default.json` 添加 Acunetix 配置：
+
+```json
+{
+  "acunetix": {
+    "apiBaseUrl": "https://192.168.46.128:3443/api/v1",
+    "apiKey": "your_api_key_here",
+    "timeout": 30000,
+    "rejectUnauthorized": false
+  }
+}
+```
+
+或者通过环境变量配置：
+```bash
+export ACUNETIX_API_URL="https://192.168.46.128:3443/api/v1"
+export ACUNETIX_API_KEY="your_api_key_here"
+```
+
+**获取 Acunetix API Key**:
+1. 登录 Acunetix Web UI
+2. 进入 Profile > API Key
+3. 复制 API Key
+
+**支持的 Acunetix 版本**:
+- Acunetix On-Premise (v13+)
+- Acunetix Online (online.acunetix.com)
+- Invicti (app.invicti.com)
+
 ### 4. 在 Claude Code 中配置 MCP
 编辑 Claude Code 的 MCP 配置文件：
 
@@ -176,6 +220,18 @@ npm run build
 ### 全面渗透测试
 ```
 使用 nmap 进行全面扫描，使用 dirsearch 递归扫描，使用 nuclei 全面扫描，使用 sqlmap 深度测试
+```
+
+### 使用 Acunetix 进行专业漏洞扫描
+```
+使用 Acunetix 创建目标并启动扫描
+使用 Acunetix 查看扫描结果和漏洞列表
+使用 Acunetix 生成漏洞报告
+```
+
+### 综合安全评估（结合所有工具）
+```
+使用 nmap 发现开放端口，使用 Acunetix 进行深度漏洞扫描，使用 nuclei 验证漏洞，最后生成报告
 ```
 
 ### Web应用专项
