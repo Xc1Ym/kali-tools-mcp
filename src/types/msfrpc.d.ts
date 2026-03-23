@@ -1,14 +1,17 @@
 declare module 'msfrpc' {
-  export interface MsfRpcConfig {
+  export interface MsfRpcOptions {
+    user?: string;
+    pass?: string;
     host?: string;
     port?: number;
-    username?: string;
-    password?: string;
+    ssl?: boolean;
+    token?: string;
     uri?: string;
   }
 
-  export class MsfRpc {
-    constructor(config: MsfRpcConfig);
+  export default class MsfRpc {
+    constructor(uri?: string, options?: MsfRpcOptions);
+    constructor(options?: MsfRpcOptions);
     login(): Promise<void>;
     call(method: string, ...args: any[]): Promise<any>;
   }

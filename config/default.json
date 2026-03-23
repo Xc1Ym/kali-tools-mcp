@@ -33,7 +33,7 @@
     "host": "localhost",
     "port": 55553,
     "username": "msf",
-    "password": "",
+    "password": "happy123",
     "uri": "/api/",
     "timeout": 30000
   }

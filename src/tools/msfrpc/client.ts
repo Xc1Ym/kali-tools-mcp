@@ -37,15 +37,10 @@ export class MsfRpcClient {
    */
   async connect(): Promise<MsfResponse<boolean>> {
     try {
-      this.client = new msfrpc.MsfRpc({
-        host: this.config.host,
-        port: this.config.port,
-        username: this.config.username,
-        password: this.config.password,
-        uri: this.config.uri,
-      });
+      const uri = `https://${this.config.username}:${this.config.password}@${this.config.host}:${this.config.port}`;
+      this.client = new msfrpc(uri);
 
-      await this.client.login();
+      await this.client.connect();
       return { success: true, data: true };
     } catch (error: any) {
       return {
@@ -71,7 +66,11 @@ export class MsfRpcClient {
     try {
       await this.ensureConnected();
 
-      const result = await this.client.call(method, ...args);
+      // 解析方法组和方法名
+      const [group, methodName] = method.split('.');
+
+      // 直接使用方法名，让 msfrpc 库处理转换
+      const result = await this.client[group][methodName](...args);
 
       return {
         success: true,
@@ -96,7 +95,7 @@ export class MsfRpcClient {
    * 获取统计信息
    */
   async getStats(): Promise<MsfResponse<any>> {
-    return this.call('core.stats');
+    return this.call('core.moduleStats');
   }
 
   /**
@@ -105,7 +104,7 @@ export class MsfRpcClient {
   async disconnect(): Promise<void> {
     if (this.client) {
       try {
-        await this.client.call('auth.logout');
+        await this.client.auth.logout();
       } catch (error) {
         // Ignore logout errors
       }

@@ -35,62 +35,49 @@ export class MsfModules {
    * 搜索模块
    */
   async searchModules(query: string): Promise<MsfResponse<ModuleInfo[]>> {
-    const result = await this.client.call<{ modules: Record<string, any> }>(
-      'module.search',
-      query
-    );
+    const result = await this.client.call<any[]>('module.search', query);
 
     if (!result.success || !result.data) {
       return { success: false, error: result.error };
     }
 
-    const modules: ModuleInfo[] = Object.entries(result.data.modules || {}).map(
-      ([key, value]) => {
-        const [type, name] = key.split('/');
-        return {
-          type,
-          name,
-          fullname: key,
-          rank: value.rank || 'unknown',
-          disclosure_date: value.disclosure_date,
-          references: value.references || [],
-          authors: value.authors || [],
-          description: value.description || '',
-          platform: value.platform,
-          arch: value.arch,
-        };
-      }
-    );
+    // module.search() 直接返回数组，不是 { modules: {...} }
+    const modules: ModuleInfo[] = result.data.map((item: any) => ({
+      type: item.type || 'unknown',
+      name: item.name || item.fullname?.split('/')[1] || 'unknown',
+      fullname: item.fullname || 'unknown',
+      rank: item.rank || 'unknown',
+      disclosure_date: item.disclosuredate,
+      references: item.references || [],
+      authors: item.authors || [],
+      description: item.description || item.name || '',
+      platform: item.platform,
+      arch: item.arch,
+    }));
 
     return { success: true, data: modules };
   }
 
   /**
    * 获取模块信息
+   * 注意：使用搜索来获取模块信息，因为 module.info API 有参数问题
    */
   async getModuleInfo(moduleName: string): Promise<MsfResponse<ModuleInfo>> {
-    const result = await this.client.call<any>('module.info', moduleName);
+    // 使用搜索来获取特定模块的信息
+    const searchResult = await this.searchModules(moduleName);
 
-    if (!result.success || !result.data) {
-      return { success: false, error: result.error };
+    if (!searchResult.success || !searchResult.data || searchResult.data.length === 0) {
+      return { success: false, error: `Module not found: ${moduleName}` };
     }
 
-    const info = result.data;
-    return {
-      success: true,
-      data: {
-        type: info.type || 'unknown',
-        name: info.name || moduleName,
-        fullname: moduleName,
-        rank: info.rank || 'unknown',
-        disclosure_date: info.disclosure_date,
-        references: info.references || [],
-        authors: info.authors || [],
-        description: info.description || '',
-        platform: info.platform,
-        arch: info.arch,
-      },
-    };
+    // 查找精确匹配的模块
+    const exactMatch = searchResult.data.find(m => m.fullname === moduleName);
+    if (exactMatch) {
+      return { success: true, data: exactMatch };
+    }
+
+    // 如果没有精确匹配，返回第一个结果
+    return { success: true, data: searchResult.data[0] };
   }
 
   /**
@@ -149,10 +136,13 @@ export class MsfModules {
       return { success: false, error: result.error };
     }
 
-    const modules: ModuleInfo[] = (result.data.modules || []).map((name: string) => ({
+    // module.exploits() 返回类数组对象，需要转换为数组
+    const moduleNames = Array.from(result.data as any[]) || [];
+
+    const modules: ModuleInfo[] = moduleNames.map((name: any) => ({
       type: 'exploit',
-      name: name.replace(/^exploits\//, ''),
-      fullname: name,
+      name: String(name).replace(/^exploits\//, ''),
+      fullname: String(name),
       rank: 'unknown',
       references: [],
       authors: [],
@@ -172,10 +162,12 @@ export class MsfModules {
       return { success: false, error: result.error };
     }
 
-    const modules: ModuleInfo[] = (result.data.modules || []).map((name: string) => ({
+    const moduleNames = Array.from(result.data as any[]) || [];
+
+    const modules: ModuleInfo[] = moduleNames.map((name: any) => ({
       type: 'auxiliary',
-      name: name.replace(/^auxiliary\//, ''),
-      fullname: name,
+      name: String(name).replace(/^auxiliary\//, ''),
+      fullname: String(name),
       rank: 'unknown',
       references: [],
       authors: [],
@@ -195,10 +187,12 @@ export class MsfModules {
       return { success: false, error: result.error };
     }
 
-    const modules: ModuleInfo[] = (result.data.modules || []).map((name: string) => ({
+    const moduleNames = Array.from(result.data as any[]) || [];
+
+    const modules: ModuleInfo[] = moduleNames.map((name: any) => ({
       type: 'post',
-      name: name.replace(/^post\//, ''),
-      fullname: name,
+      name: String(name).replace(/^post\//, ''),
+      fullname: String(name),
       rank: 'unknown',
       references: [],
       authors: [],
@@ -218,10 +212,12 @@ export class MsfModules {
       return { success: false, error: result.error };
     }
 
-    const modules: ModuleInfo[] = (result.data.modules || []).map((name: string) => ({
+    const moduleNames = Array.from(result.data as any[]) || [];
+
+    const modules: ModuleInfo[] = moduleNames.map((name: any) => ({
       type: 'payload',
-      name: name.replace(/^payloads\//, ''),
-      fullname: name,
+      name: String(name).replace(/^payloads\//, ''),
+      fullname: String(name),
       rank: 'unknown',
       references: [],
       authors: [],
