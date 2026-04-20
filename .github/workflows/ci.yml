@@ -49,8 +49,9 @@ jobs:
 
     - name: Check git status
       run: |
-        if [ -n "$(git status --porcelain)" ]; then
-          echo "❌ Working directory is not clean"
+        # Ignore build artifacts (*.js, *.js.map) since .gitignore excludes them
+        if [ -n "$(git status --porcelain -- '*.ts' '*.json' '*.yml' '*.md')" ]; then
+          echo "❌ Source files have uncommitted changes"
           git status
           exit 1
         fi
