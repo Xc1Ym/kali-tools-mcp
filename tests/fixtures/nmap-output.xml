@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE nmaprun>
+<nmaprun scanner="nmap" args="nmap -sS -sV -oX - -oN - 192.168.1.1 192.168.1.2" start="1700000000" startstr="Wed Nov 15 00:00:00 2024" version="7.94" xmloutputversion="1.05">
+<host starttime="1700000001" endtime="1700000010">
+<status state="up" reason="echo-reply" reason_ttl="64"/>
+<address addr="192.168.1.1" addrtype="ipv4"/>
+<hostnames>
+<hostname name="router.local" type="PTR"/>
+</hostnames>
+<ports>
+<port protocol="tcp" portid="22"><state state="open" reason="syn-ack" reason_ttl="64"/><service name="ssh" method="probed" conf="10" version="OpenSSH 8.9"/></port>
+<port protocol="tcp" portid="80"><state state="open" reason="syn-ack" reason_ttl="64"/><service name="http" method="probed" conf="10" version="nginx 1.18.0"/></port>
+<port protocol="tcp" portid="443"><state state="open" reason="syn-ack" reason_ttl="64"/><service name="https" method="probed" conf="10"/></port>
+<port protocol="tcp" portid="3306"><state state="closed" reason="reset" reason_ttl="64"/><service name="mysql" method="table" conf="3"/></port>
+</ports>
+<os>
+<osmatch name="Linux 5.4" accuracy="95" line="123"/>
+<osmatch name="Linux 5.0" accuracy="90" line="456"/>
+</os>
+</host>
+<host starttime="1700000001" endtime="1700000010">
+<status state="up" reason="echo-reply" reason_ttl="128"/>
+<address addr="192.168.1.2" addrtype="ipv4"/>
+<hostnames>
+<hostname name="webserver.local" type="PTR"/>
+</hostnames>
+<ports>
+<port protocol="tcp" portid="80"><state state="open" reason="syn-ack" reason_ttl="128"/><service name="http" method="probed" conf="10" version="Apache 2.4.52"/></port>
+</ports>
+</host>
+<runstats><finished time="1700000020" timestr="Wed Nov 15 00:00:20 2024" elapsed="20.00" summary="Nmap done at Wed Nov 15 00:00:20 2024; 2 IP addresses (2 hosts up) scanned in 20.00 seconds" exit="success"/></runstats>
+</nmaprun>

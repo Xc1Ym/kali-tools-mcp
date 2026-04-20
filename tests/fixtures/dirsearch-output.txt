@@ -1,0 +1,16 @@
+Extensions: php, html, js, txt | HTTP method: GET | Threads: 10 | Wordlist size: 1000
+
+Target: http://example.com/
+
+[00:00:01] Starting:
+[00:00:02] 200 -   12KB - /index.html
+[00:00:03] 301 -  328B  - /admin -> http://example.com/admin/
+[00:00:04] 403 -  289B  - /admin/
+[00:00:05] 200 -    8KB - /login.php
+[00:00:06] 302 -    0B  - /redirect -> http://example.com/
+[00:00:07] 200 -    2KB - /config.txt
+[00:00:08] 404 -    1KB - /notfound.html
+[00:00:10] 200 -   45KB - /uploads/
+[00:00:12] 200 -    5KB - /api/users
+
+Task Completed

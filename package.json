@@ -8,7 +8,14 @@
     "build": "tsc",
     "start": "node build/index.js",
     "dev": "tsc && node build/index.js",
-    "watch": "tsc --watch"
+    "watch": "tsc --watch",
+    "test": "vitest run",
+    "test:watch": "vitest",
+    "test:coverage": "vitest run --coverage",
+    "test:unit": "vitest run tests/unit",
+    "test:integration": "vitest run tests/integration",
+    "test:security": "vitest run tests/security",
+    "test:performance": "vitest run tests/performance"
   },
   "keywords": [
     "mcp",
@@ -33,6 +40,8 @@
   },
   "devDependencies": {
     "@types/node": "^20.10.0",
-    "typescript": "^5.3.3"
+    "@vitest/coverage-v8": "^4.1.4",
+    "typescript": "^5.3.3",
+    "vitest": "^4.1.4"
   }
 }

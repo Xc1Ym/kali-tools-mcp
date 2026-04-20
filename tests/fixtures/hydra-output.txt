@@ -1,0 +1,10 @@
+Hydra v9.5 (c) 2023 by van Hauser/THC & David Maciejak
+Hydra (https://github.com/vanhauser-thc/thc-hydra)
+
+[DATA] max 4 tasks per 1 server, overall 4 tasks, 14344391 login tries (l:1/p:14344391), ~3586098 tries per task
+[DATA] attacking ssh://192.168.1.100:22/
+[STATUS] 32.00 tries/min, 32 tries in 00:01h, 14344359 to do in 7472:47h, 4 active
+[22][ssh] host: 192.168.1.100   login: admin   password: password123
+1 of 1 target successfully completed, 1 valid password found
+[STATUS] attack finished for 192.168.1.100 (waiting for children to complete)
+Hydra (https://github.com/vanhauser-thc/thc-hydra) finished at 2024-11-15 00:05:00

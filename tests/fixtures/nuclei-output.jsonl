@@ -1,0 +1,5 @@
+{"template":"http/misconfiguration/open-redirect","info":{"name":"Open Redirect","severity":"medium","author":"pdteam"},"type":"http","host":"http://example.com","matched-at":"http://example.com/redirect?url=http://evil.com","timestamp":"2024-11-15T00:00:01.000Z"}
+{"template":"http/cves/2023/1234","info":{"name":"Apache Struts RCE","severity":"critical","author":"nuclei"},"type":"http","host":"http://example.com","matched-at":"http://example.com/struts/action","timestamp":"2024-11-15T00:00:02.000Z"}
+{"template":"http/exposures/config exposed","info":{"name":"Config File Exposure","severity":"high","author":"nuclei"},"type":"http","host":"http://example.com","matched-at":"http://example.com/.env","timestamp":"2024-11-15T00:00:03.000Z"}
+{"template":"http/info/robots-txt","info":{"name":"Robots.txt","severity":"info","author":"nuclei"},"type":"http","host":"http://example.com","matched-at":"http://example.com/robots.txt","timestamp":"2024-11-15T00:00:04.000Z"}
+{"template":"dns/a-record","info":{"name":"A Record","severity":"low","author":"nuclei"},"type":"dns","host":"example.com","matched-at":"example.com","timestamp":"2024-11-15T00:00:05.000Z"}
