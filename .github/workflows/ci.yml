@@ -41,6 +41,12 @@ jobs:
     - name: Run TypeScript check
       run: npx tsc --noEmit
 
+    - name: Run tests
+      run: npm test
+
+    - name: Run tests with coverage
+      run: npm run test:coverage
+
     - name: Check git status
       run: |
         if [ -n "$(git status --porcelain)" ]; then
